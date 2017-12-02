@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 
 import com.example.vadym.bootcamplocator.R;
 import com.example.vadym.bootcamplocator.adapters.LocationsAdapter;
-import com.example.vadym.bootcamplocator.model.MyAddress;
 import com.example.vadym.bootcamplocator.services.DataService;
 
 /**
@@ -19,6 +18,8 @@ import com.example.vadym.bootcamplocator.services.DataService;
  * Use the {@link LocationsListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
+
+// TODO: 02.12.17 Тут цей фрагмент не потрібен, просто заміни на ті в'юхі, що лежать в ньому.
 public class LocationsListFragment extends Fragment {
 
     public LocationsListFragment() {

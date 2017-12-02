@@ -1,17 +1,15 @@
 package com.example.vadym.bootcamplocator.activities;
 
 import android.Manifest;
-import android.app.PendingIntent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
-import android.os.Looper;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentActivity;
-import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -27,9 +25,6 @@ import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.tasks.OnSuccessListener;
-
-import java.security.Permission;
 
 
 public class MapsActivity extends FragmentActivity implements GoogleApiClient.OnConnectionFailedListener,
@@ -41,8 +36,9 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.On
 
     private FusedLocationProviderClient locationProviderClient;
 
+    // TODO: 02.12.17 Видаляй, якщо не потрібне [1]
     private LocationCallback mLocationCallback = new LocationCallback();
-
+    // TODO: 02.12.17 Видаляй, якщо не потрібне [2]
     private LocationRequest mLocationRequest;
     private MainFragment fragment;
 
@@ -66,7 +62,7 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.On
 
         if(fragment==null){
             fragment = MainFragment.newInstance();
-
+            // TODO: 02.12.17 Тут краще юзати replace.
             FragmentTransaction transaction = manager.beginTransaction();
             transaction.add(R.id.container_main,fragment).commit();
         }
@@ -134,6 +130,10 @@ public class MapsActivity extends FragmentActivity implements GoogleApiClient.On
 
         switch (requestCode){
             case PERMESSION_LOCATION:{
+                /*
+                  Тут ти красава просто, тому що я раз зловив на проді помилку,
+                  бо не перевіряв кількість елементів в цьому масиві.
+                 */
                 if(grantResults.length>0 && grantResults[0]==PERMESSION_LOCATION){
                     startLocationServices();
                     Log.v("Map", "Permission granted - starting services");

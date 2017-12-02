@@ -9,6 +9,12 @@ import java.util.ArrayList;
  */
 
 public class DataService {
+
+    // TODO: 02.12.17 Також тобі тре буде знати трхи про патерни.
+    // TODO: 02.12.17 Дана штука називається Репозиторій (Repository).
+    // TODO: 02.12.17 І вона реалізована коряво. Глянь в неті, як таке краще зробити.
+
+
     private static final DataService instance = new DataService();
 
     public static DataService getInstance() {
@@ -23,6 +29,8 @@ public class DataService {
         //pretending we are downloading data from server
 
         ArrayList<MyAddress> list = new ArrayList<>();
+
+        // TODO: 02.12.17 А що буде, якщо ти не із Житомиру?
 
         list.add(new MyAddress(50.256635f,28.675129f,"BusStation",
                 "Khlibna St, 14, Zhytomyr, Zhytomyrs'ka oblast, Ukraine ,10000","slo"));

@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 
 android {
+    lintOptions {
+        abortOnError true
+        fatal 'StopShip'
+    }
+
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.vadym.bootcamplocator"

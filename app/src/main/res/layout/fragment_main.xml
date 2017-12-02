@@ -8,6 +8,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
+        <!--// TODO: 02.12.17 Якщо в тебе є такі вьюхі, то ти можеш не юзати CardView. -->
+        <!--// TODO: 02.12.17 Глянь в неті, як робити такі в'юхі в drawable. -->
+
         <android.support.v7.widget.CardView
             xmlns:card_view="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
@@ -22,6 +25,7 @@
                 android:layout_gravity="center"
                 android:layout_margin="2dp">
 
+                <!--// TODO: 02.12.17 Видали кнопку, якщо не будеш користуватися нею.-->
                 <ImageButton
                     android:id="@+id/searchBtn"
                     android:layout_width="35dp"
@@ -41,6 +45,7 @@
                     android:layout_toLeftOf="@+id/micBtn"
                     android:id="@+id/zip_text"/>
 
+                <!--// TODO: 02.12.17 Видали кнопку, якщо не будеш користуватися нею.-->
                 <ImageButton
                     android:id="@+id/micBtn"
                     android:layout_width="35dp"
@@ -62,6 +67,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+        <!--// stopship: 02.12.17 Тут цей фрагмент не потрібен, просто заміни на ті в'юхі, що лежать в ньому.-->
+        <!--// TODO: 02.12.17 До речі, воно в тебе закриває кусок карти. Зроби так, щоб не було таких місць. -->
+        <!--// TODO: 02.12.17 По перфомансу це не дуже.-->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"

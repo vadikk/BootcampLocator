@@ -48,6 +48,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public static MainFragment newInstance() {
+        // TODO: 02.12.17 Заюзай тут однолінійне представлення, тобі ж студія підсвічує його.
         MainFragment fragment = new MainFragment();
         return fragment;
     }
@@ -67,6 +68,8 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        // TODO: 02.12.17 Це взагалі збочення. Не варто робити прив'язки до активіті + ще й робити такі махінації.
+        // TODO: 02.12.17 Подумай, як краще це організувати.
         locationsListFragment = (LocationsListFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.container_location_list);
 
         if(locationsListFragment==null){
@@ -79,6 +82,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         }
 
         final EditText zipText = (EditText)view.findViewById(R.id.zip_text);
+        // TODO: 02.12.17 Організуй цей код в середині фрагменту, а не тут.
         zipText.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
@@ -88,6 +92,8 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                     //You should make sure this is a valid zipcode - check total count and character
                     String text = zipText.getText().toString();
                     int zip = Integer.parseInt(text);
+
+                    // TODO: 02.12.17 Винеси в окремий клас, бажано. Або в метод.
 
                     InputMethodManager inputMethodManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(zipText.getWindowToken(),0);
@@ -133,6 +139,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
         }
         int zip = 0;
         //update our location
+        // TODO: 02.12.17 Невірна логіка тут. В тебе перетирає код на строчці 162 всю роботу, яка тут виконується.
         try{
             Geocoder geocoder = new Geocoder(getContext(), Locale.getDefault());
             List<Address> addresses = geocoder.getFromLocation(latLng.latitude,latLng.longitude,1);
@@ -157,7 +164,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
     }
 
     public void updateMapForZip(int zipcode){
-
+        // TODO: 02.12.17 Яка тут різниця ,який zip прийде, якщо все одно один і той же результат?
         ArrayList<MyAddress> list = DataService.getInstance().getBootcampLocationWithin10MilesOfZip(zipcode);
 
         for(int i=0;i<list.size();i++){
