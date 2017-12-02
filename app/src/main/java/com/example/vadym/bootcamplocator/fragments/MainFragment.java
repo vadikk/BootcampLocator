@@ -41,6 +41,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private MarkerOptions userMarker;
+    private LocationsListFragment locationsListFragment;
 
     public MainFragment() {
         // Required empty public constructor
@@ -66,6 +67,17 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
+        locationsListFragment = (LocationsListFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.container_location_list);
+
+        if(locationsListFragment==null){
+            locationsListFragment = LocationsListFragment.newInstance();
+            getActivity()
+                    .getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container_location_list,locationsListFragment)
+                    .commit();
+        }
+
         final EditText zipText = (EditText)view.findViewById(R.id.zip_text);
         zipText.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -80,6 +92,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
                     InputMethodManager inputMethodManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                     inputMethodManager.hideSoftInputFromWindow(zipText.getWindowToken(),0);
 
+                    showList();
                     updateMapForZip(zip);
                     return true;
                 }
@@ -88,6 +101,7 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             }
         });
 
+        hideList();
         return view;
     }
 
@@ -154,6 +168,14 @@ public class MainFragment extends Fragment implements OnMapReadyCallback {
             marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pin));
             mMap.addMarker(marker);
         }
+    }
+
+    private void hideList(){
+        getActivity().getSupportFragmentManager().beginTransaction().hide(locationsListFragment);
+    }
+
+    private void showList(){
+        getActivity().getSupportFragmentManager().beginTransaction().show(locationsListFragment);
     }
 
 }

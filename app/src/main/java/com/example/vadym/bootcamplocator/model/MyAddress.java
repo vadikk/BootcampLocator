@@ -6,6 +6,8 @@ package com.example.vadym.bootcamplocator.model;
 
 public class MyAddress {
 
+    final String DRAWABLE = "@draawble/";
+
     private float longtitude;
     private float latitude;
     private String locationTitle;
@@ -38,5 +40,9 @@ public class MyAddress {
 
     public String getLocationImageUrl() {
         return locationImageUrl;
+    }
+
+    public String getImgUrl(){
+        return DRAWABLE + locationImageUrl;
     }
 }
